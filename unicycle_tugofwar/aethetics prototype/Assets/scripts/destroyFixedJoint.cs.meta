@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: ab0d4adf9679723469b899bc07fe76b3
+timeCreated: 1430844784
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - scream1: {fileID: 8300000, guid: 484010cde0be09549b7d52af83b792d7, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
