@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour {
 	// This is a reference to the Rigidbody component called "rb"
 	public Rigidbody rb;
 	public float forwardForce = 2000f;	// Variable that determines the forward force
-	public float sidewaysForce = 500f;  // Variable that determines the sideways force
-	public float jumpheight = 10000f; //jump height variable
+	public float sidewaysForce = 300f;  // Variable that determines the sideways force
+	public float jumpheight = 1000f; //jump height variable
 	public bool isGrounded = true;
 	
 
@@ -36,18 +36,8 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown ("w") || Input.GetKeyDown ("up") && isGrounded == true) 
 		{
 			isGrounded = false;
-			rb.AddForce (0, jumpheight * Time.deltaTime, 0, ForceMode.Impulse);
+			rb.AddForce (0, jumpheight * Time.deltaTime, 0, ForceMode.VelocityChange);
 		}
-	}
-	void onCollisionEnter(Collision ground){
-		print ("hi");
-		if(ground.collider.name == "Ground")
-		{
-			isGrounded = true;
-		}
-	}
-	void onCollisionLeave(Collision ground){
-		print ("hello");
 	}
 }
 	
