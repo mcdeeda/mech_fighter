@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float sidewaysForce = 300f;  // Variable that determines the sideways force
 	public float jumpheight = 1000f; //jump height variable
 	public bool isGrounded = true;
+	public bool isOnWall = false;
 	
 
 	// Marked this as "Fixed"Update because
