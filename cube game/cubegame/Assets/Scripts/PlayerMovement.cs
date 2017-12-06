@@ -4,9 +4,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	// This is a reference to the Rigidbody component called "rb"
 	public Rigidbody rb;
-
 	public float forwardForce = 2000f;	// Variable that determines the forward force
 	public float sidewaysForce = 500f;  // Variable that determines the sideways force
+	public float jumpheight = 10000f; //jump height variable
+	public bool isGrounded = true;
+	
 
 	// Marked this as "Fixed"Update because
 	// using it to mess with physics.
@@ -15,13 +17,13 @@ public class PlayerMovement : MonoBehaviour {
 		// Add a forward force
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-		if (Input.GetKey("d"))	// If the player is pressing the "d" key
+		if (Input.GetKey("d") || Input.GetKey("right"))	// If the player is pressing the "d" or right arrow key
 		{
 			// Add a force to the right
 			rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 		}
 
-		if (Input.GetKey("a"))  // If the player is pressing the "a" key
+			if (Input.GetKey("a") || Input.GetKey("left"))  // If the player is pressing the "a" or left arrow key
 		{
 			// Add a force to the left
 			rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
@@ -31,5 +33,21 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			FindObjectOfType<GameManager>().EndGame();
 		}
+		if (Input.GetKeyDown ("w") || Input.GetKeyDown ("up") && isGrounded == true) 
+		{
+			isGrounded = false;
+			rb.AddForce (0, jumpheight * Time.deltaTime, 0, ForceMode.Impulse);
+		}
+	}
+	void onCollisionEnter(Collision ground){
+		print ("hi");
+		if(ground.collider.name == "Ground")
+		{
+			isGrounded = true;
+		}
+	}
+	void onCollisionLeave(Collision ground){
+		print ("hello");
 	}
 }
+	
