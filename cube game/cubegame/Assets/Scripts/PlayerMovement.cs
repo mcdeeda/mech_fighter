@@ -9,12 +9,15 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpheight = 1000f; //jump height variable
 	public bool isGrounded = true;
 	public bool isOnWall = false;
-	
+	public float walljumpwidth = 10f;
+	public float walljumpheight = 10f;
+	public float walljumpforce = 40f;
 
 	// Marked this as "Fixed"Update because
 	// using it to mess with physics.
 	void FixedUpdate ()
 	{
+		print (isOnWall);
 		// Add a forward force
 		rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
@@ -38,6 +41,10 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			isGrounded = false;
 			rb.AddForce (0, jumpheight * Time.deltaTime, 0, ForceMode.VelocityChange);
+		}
+		if (Input.GetKeyDown ("a") || Input.GetKeyDown ("left") || Input.GetKeyDown("d") || Input.GetKeyDown ("right") && isOnWall == true) 
+		{
+			rb.AddForce (-walljumpforce, walljumpheight, walljumpforce, ForceMode.VelocityChange);
 		}
 	}
 }

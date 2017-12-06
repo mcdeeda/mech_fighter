@@ -6,7 +6,7 @@ public class PlayerCollision : MonoBehaviour {
 	// This function runs when you hit another object.
 	void OnCollisionEnter (Collision collisionInfo)
 	{
-		print ("hi");
+		
 		if(collisionInfo.gameObject.name == "Ground")
 		{
 			movement.isGrounded = true;
